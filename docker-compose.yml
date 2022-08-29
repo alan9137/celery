@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  flask_app:
+    build: .
+    container_name: flask_app
+    networks:
+      - redis_net
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/project
+    command: python app.py
+  celery_worker:
+    build: .
+    container_name: celery_worker
+    environment:
+      - BROKER_REDIS_URL=redis://cache:6379/0
+      - BACKEND_REDIS_URL=redis://cache:6379/0
+    volumes:
+      - .:/project
+    networks:
+      - redis_net
+    command: celery -A tasks.celery_app worker --pool=solo -l info
+  cache:
+    image: redis
+    container_name: celery_redis
+    networks:
+      - redis_net
+    ports:
+      - 6379:6379
+
+networks:
+  redis_net:
+    external: true
+    name: redis_net
+    driver: bridge

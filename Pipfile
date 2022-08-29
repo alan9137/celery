@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+werkzeug = "==2.1.2"
+flask = "==2.1.2"
+flask-restx = "==0.5.1"
+flask-redis = "==0.3.0"
+celery = "==5.2.7"
+gevent = "==21.12.0"
+redis = "==4.3.4"
+sqlalchemy = "==1.4.40"
+pytest = "*"
+flask-testing = "*"
+pytest-cov = "*"
+cmake = "*"
+greenlet = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.10"
