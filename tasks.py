@@ -29,5 +29,5 @@ def add(self, x: int, y: int):
     n = 10
     for i in range(0, n, 1):
         self.update_state(state="PROGRESS", meta={"done": i, "total": n})
-        time.sleep(1.5)
+        time.sleep(1)
     return x + y
